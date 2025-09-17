@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prismen.ch</title>
+    <style>
+        :root {
+            --primary: #4a2e83a0;
+            --secondary: #6f6e91;
+
+            /* Original */
+            --original: #1B05AB;
+            --original2: #1527BD;
+            --original3: #0F49CF;
+            --original4: #086AE1;
+            --original5: #028CF3;
+
+
+            /* Neutral Colors */
+            --dark: #3e3c67;
+            /* White */
+            --light: #FFFFFF;
+            /* White */
+            --light-gray: #F6F8FA;
+            /* Light Gray Background */
+            --medium-gray: #E5E7EB;
+            /* Medium Gray */
+
+            /* Text Colors */
+            --text-dark: #2F2E41;
+            /* Dark Text */
+            --text-medium: #6B7280;
+            /* Medium Gray Text */
+            --text-light: #ffffff;
+            /* Light Text */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 60px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(93, 95, 239, 0.2);
+        }
+
+        .subtitle {
+            font-size: 22px;
+            margin-top: 10px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--medium-gray);
+            color: #1b05ab;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .shop-sections {
+            margin-top: 60px;
+        }
+
+        .shop-item {
+            margin-bottom: 80px;
+            background-color: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+        }
+
+        .shop-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Each shop has its own accent color */
+        .shop-item:nth-child(2) .shop-link {
+            background-color: var(--original);
+        }
+
+        .shop-item:nth-child(3) .shop-link {
+            background-color: var(--original2);
+        }
+
+        .shop-item:nth-child(4) .shop-link {
+            background-color: var(--original3);
+        }
+
+        .shop-item:nth-child(5) .shop-link {
+            background-color: var(--original4);
+        }
+
+        .shop-item:nth-child(6) .shop-link {
+            background-color: var(--original5);
+        }
+
+        .shop-featured {
+            display: flex;
+        }
+
+        .shop-logo {
+            flex: 0 0 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background-color: var(--light-gray);
+        }
+
+        .shop-logo img {
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+        }
+
+        .shop-intro {
+            flex: 0 0 70%;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .shop-intro h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .shop-gallery {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding: 10px 0;
+            background-color: var(--light-gray);
+            justify-content: center;
+        }
+
+        .shop-gallery img {
+            flex: 0 0 auto;
+            /* width: 300px; */
+            height: 200px;
+            /* object-fit: fill; */
+            margin-right: 10px;
+            scroll-snap-align: start;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .shop-gallery img:hover {
+            transform: scale(1.02);
+        }
+
+        .shop-content {
+            padding: 30px 40px 40px;
+        }
+
+        .shop-link {
+            display: inline-block;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .shop-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Color variations for shop links on hover */
+        .shop-item:nth-child(2) .shop-link:hover {
+            background-color: var(--original);
+        }
+
+        .shop-item:nth-child(3) .shop-link:hover {
+            background-color: var(--original2);
+        }
+
+        .shop-item:nth-child(4) .shop-link:hover {
+            background-color: var(--original3);
+        }
+
+        .shop-item:nth-child(5) .shop-link:hover {
+            background-color: var(--original4);
+        }
+
+        .shop-item:nth-child(6) .shop-link:hover {
+            background-color: var(--original5);
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #1b05ab 100%);
+            color: var(--text-light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .address-and-map {
+            display: flex;
+            gap: 40px;
+        }
+
+        .address-block {
+            flex: 1;
+        }
+
+        .address-block h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--primary-light);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .address-details {
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .map-container {
+            flex: 2;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Rounded corners for all images */
+        img {
+            border-radius: 8px;
+        }
+
+        /* Custom styles for different shop types */
+        .shop-item:nth-child(2) h3 {
+            color: var(--original);
+        }
+
+        .shop-item:nth-child(3) h3 {
+            color: var(--original2);
+        }
+
+        .shop-item:nth-child(4) h3 {
+            color: var(--original3);
+        }
+
+        .shop-item:nth-child(5) h3 {
+            color: var(--original4);
+        }
+
+        .shop-item:nth-child(6) h3 {
+            color: var(--original5);
+        }
+
+        @media (max-width: 768px) {
+            .shop-featured {
+                flex-direction: column;
+            }
+
+            .shop-logo,
+            .shop-intro {
+                flex: 0 0 100%;
+            }
+
+            .address-and-map {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <img src="images/logo.png" alt="Logo" style="max-width: 300px; vertical-align:middle; margin-bottom:10px;">
+            <h1>Onlineshops mit Showroom</h1>
+            <p class="subtitle">Glas - Kristall - Esoterik - Spirit - Energetisierung</p>
+        </div>
+    </header>
+
+    <main class="container shop-sections">
+        <h2>Unsere Shops</h2>
+
+        <!-- Shop 1 -->
+        <section class="shop-item">
+            <div class="shop-featured">
+                <div class="shop-logo">
+                    <img src="images/deko-glas/deko-glas-logo.png" alt="Deko Glas Logo">
+                </div>
+                <div class="shop-intro">
+                    <h3>Deko Glas</h3>
+                    <p>Kugeln, Halbkugeln, Nuggets, Murmeln, Cabochon, Kies, Diamanten, Herzen, Kiesel, Splitt,
+                        Granulat, Brocken</p>
+                    <a href="https://www.deko-glas.ch/" class="shop-link">direkt zum Onlineshop Deko-Glas</a>
+                </div>
+            </div>
+            <div class="shop-gallery">
+                <img src="images/deko-glas/deko-glas-image1.jpg" alt="Deko Glas Image 1">
+                <img src="images/deko-glas/deko-glas-image2.jpg" alt="Deko Glas Image 2">
+                <img src="images/deko-glas/deko-glas-image3.jpg" alt="Deko Glas Image 3">
+                <img src="images/deko-glas/deko-glas-image4.jpg" alt="Deko Glas Image 4">
+            </div>
+        </section>
+
+        <!-- Shop 2 -->
+        <section class="shop-item">
+            <div class="shop-featured">
+                <div class="shop-logo">
+                    <img src="images/deko-kristall/deko-kristall-logo.png" alt="Deko Kristall Logo">
+                </div>
+                <div class="shop-intro">
+                    <h3>Deko Kristall</h3>
+                    <p>Geschliffene und facettierte Glaskristalle, Swarovski, Regenbogenkristalle, Cascaden,
+                        Lüsterbehänge</p>
+                    <a href="https://www.deko-glas.ch/12-deko-kristall" class="shop-link">direkt zum Onlineshop
+                        Deko-Kristall</a>
+                </div>
+            </div>
+            <div class="shop-gallery">
+                <img src="images/deko-kristall/deko-kristall-image1.jpg" alt="Deko kristall Image 1">
+                <img src="images/deko-kristall/deko-kristall-image2.jpg" alt="Deko kristall Image 2">
+                <img src="images/deko-kristall/deko-kristall-image3.jpg" alt="Deko kristall Image 3">
+                <img src="images/deko-kristall/deko-kristall-image4.jpg" alt="Deko kristall Image 4">
+            </div>
+        </section>
+
+        <!-- Shop 3 -->
+        <section class="shop-item">
+            <div class="shop-featured">
+                <div class="shop-logo">
+                    <img src="images/spirit-welten/spirit-welten-logo.png" alt="Spirit Welten Logo">
+                </div>
+                <div class="shop-intro">
+                    <h3>Spirit Welten</h3>
+                    <p>Spirit-Welten -der Spirit Online Shop mit einem erlesenen Angebot für Körper, Geist und Seele.
+                    </p>
+                    <a href="https://www.spirit-welten.ch/" class="shop-link">direkt zum Onlineshop Spirit-Welten</a>
+                </div>
+            </div>
+            <div class="shop-gallery">
+                <img src="images/spirit-welten/spirit-welten-image1.jpg" alt="Spirit Welten Image 1">
+                <img src="images/spirit-welten/spirit-welten-image2.jpg" alt="Spirit Welten Image 2">
+                <img src="images/spirit-welten/spirit-welten-image3.jpg" alt="Spirit Welten Image 3">
+                <img src="images/spirit-welten/spirit-welten-image4.jpg" alt="Spirit Welten Image 4">
+            </div>
+        </section>
+
+        <!-- Shop 4 -->
+        <section class="shop-item">
+            <div class="shop-featured">
+                <div class="shop-logo">
+                    <img src="images/vigore/vigore-logo.jpg" alt="Vigore Logo">
+                </div>
+                <div class="shop-intro">
+                    <h3>Vigore</h3>
+                    <p>Vigore - die individuelle Edelstein-Energetisierung für Wasser - Raum - Mensch
+                    </p>
+                    <a href="https://www.spirit-welten.ch/63-vigore" class="shop-link">vigore bei spirit-welten.ch</a>
+                </div>
+            </div>
+            <div class="shop-gallery">
+                <img src="images/vigore/vigore-image1.jpg" alt="Vigore Image 1">
+                <img src="images/vigore/vigore-image2.jpg" alt="Vigore Image 2">
+                <img src="images/vigore/vigore-image3.jpg" alt="Vigore Image 3">
+                <img src="images/vigore/vigore-image4.jpg" alt="Vigore Image 4">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-wrapper">
+            <div class="address-and-map">
+                <div class="address-block">
+                    <h3>Kontakt</h3>
+                    <div class="address-details">
+                        <p><strong>prismen.ch GmbH</strong></p>
+                        <p>Gunstelweg 7</p>
+                        <p>CH-9545 Wängi TG</p>
+                        <p>Tel: +41 (0)52 336 20 02</p>
+                        <p>Mail: info@prismen.ch</p>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5391.310298766197!2d8.962545!3d47.496631!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a935725f419c9%3A0xe9edbd4741e1b44b!2sGunstelweg%207%2C%209545%20W%C3%A4ngi%2C%20Schweiz!5e0!3m2!1sde!2sus!4v1758119998558!5m2!1sde!2sus"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="opening-hours">
+                <p>Wir haben in Wängi einen Showroom wo die verschiedenen Produkte ausgestellt sind und auch
+                    gleich mitgenommen werden können. Unser Showroom hat keine festen Öffnungszeiten. Wir öffnen
+                    jedoch nach vorheriger Vereinbarung gerne für Sie. Viele Produkte von der Homepage sind im
+                    Showroom verfügbar. Um ganz sicher zu sein, fragen Sie an ob das Gewünschte an Lager ist.
+                </p>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 prismen.ch GmbH</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
